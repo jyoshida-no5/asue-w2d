@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>お好み焼きはここやねん | トップページ</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;600;700&family=Noto+Serif+JP:wght@600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'kk-black':  '#1a1008',
+            'kk-brown':  '#7c4a1e',
+            'kk-amber':  '#c97c2a',
+            'kk-cream':  '#f5efe5',
+            'kk-warm':   '#ede5d8',
+            'kk-border': '#e5e0d8',
+            'kk-sub':    '#6b5744',
+          },
+          fontFamily: {
+            sans:  ['Noto Sans JP', 'sans-serif'],
+            serif: ['Noto Serif JP', 'serif'],
+          },
+          letterSpacing: {
+            widest2: '0.2em',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* ─── Base ─── */
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Noto Sans JP', sans-serif; background: #fff; color: #1a1008; -webkit-font-smoothing: antialiased; }
+
+
+    /* ─── Image Placeholder ─── */
+    .img-ph {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: #d1d5db;
+      color: #9ca3af;
+      font-size: 11px;
+    }
+
+    /* ─── Snap Scroll (SP 横スクロール) ─── */
+    .snap-x {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      gap: 14px;
+      padding-bottom: 4px;
+    }
+    .snap-x::-webkit-scrollbar { display: none; }
+    .snap-item {
+      scroll-snap-align: start;
+      flex-shrink: 0;
+    }
+    /* PC: グリッドに切り替え */
+    @media (min-width: 1024px) {
+      .snap-x {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+        overflow-x: visible;
+        scroll-snap-type: none;
+      }
+      .snap-item {
+        width: auto !important;
+        flex-shrink: initial;
+        scroll-snap-align: none;
+      }
+    }
+
+    /* ─── Section Label ─── */
+    .sec-en {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #c97c2a;
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    /* ─── Smooth Hover ─── */
+    a, button { transition: color 0.2s, background-color 0.2s, opacity 0.2s; }
+
+    /* ─── Bottom Nav Safe Area ─── */
+    .bottom-nav {
+      padding-bottom: env(safe-area-inset-bottom, 0px);
+    }
+  </style>
+</head>
+
+<body class="bg-white text-kk-black">
+
+  <!-- ========== HEADER ========== -->
+  <header class="fixed top-0 left-0 right-0 h-14 lg:h-16 bg-white z-50 shadow-sm border-b-2 border-black">
+
+    <div class="h-full max-w-7xl mx-auto px-4 flex items-center justify-between">
+
+      <!-- ロゴ -->
+      <a href="index.html" class="flex items-center gap-2 no-underline group">
+        <img src="assets/logo_cocoyane.png" alt="お好み焼きはここやねん" class="h-8 lg:h-10 w-auto group-hover:brightness-110 transition-all">
+        <span class="text-zinc-400 text-xs hidden sm:block">お好み焼き・鉄板焼き</span>
+      </a>
+
+      <!-- PC ナビ -->
+      <nav class="hidden lg:flex items-center gap-8 text-sm text-kk-black font-bold">
+        <a href="menu.html" class="relative py-1 hover:text-kk-amber transition-colors group">
+          メニュー
+          <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-kk-amber transition-all duration-300 group-hover:w-full"></span>
+        </a>
+        <a href="#feature" class="relative py-1 hover:text-kk-amber transition-colors group">
+          こだわり
+          <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-kk-amber transition-all duration-300 group-hover:w-full"></span>
+        </a>
+        <a href="#news" class="relative py-1 hover:text-kk-amber transition-colors group">
+          お知らせ
+          <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-kk-amber transition-all duration-300 group-hover:w-full"></span>
+        </a>
+      </nav>
+
+      <!-- 右側ボタン群 -->
+      <div class="flex items-center gap-3">
+        <!-- 店舗を探す（PC・タブレット） -->
+        <a href="#store"
+           class="hidden md:flex items-center gap-1.5 bg-red-600 text-white text-base font-bold px-7 py-3 rounded-none hover:bg-red-700">
+          <i data-lucide="map-pin" class="w-5 h-5"></i>
+          店舗を探す
+        </a>
+        <!-- ハンバーガー（SP） -->
+        <button id="menu-btn" class="lg:hidden text-kk-black p-1.5 -mr-1" aria-label="メニューを開く">
+          <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========== SP ドロワーメニュー ========== -->
+  <div id="drawer" class="fixed inset-0 z-[60] hidden">
+    <!-- Overlay -->
+    <div class="absolute inset-0 bg-black/60" id="drawer-overlay"></div>
+    <!-- Panel -->
+    <div class="absolute top-0 right-0 h-full w-72 bg-kk-black flex flex-col p-6 gap-6 shadow-2xl">
+      <!-- ヘッダー -->
+      <div class="flex items-center justify-between">
+        <img src="assets/logo_cocoyane.png" alt="ここやねん" class="h-6 w-auto">
+        <button id="menu-close" class="text-white p-1">
+          <i data-lucide="x" class="w-6 h-6"></i>
+        </button>
+      </div>
+      <!-- リンク -->
+      <nav class="flex flex-col gap-5 text-zinc-300 text-base">
+        <a href="menu.html" class="flex items-center gap-3 hover:text-kk-amber">
+          <i data-lucide="utensils" class="w-5 h-5 text-kk-amber"></i>メニュー
+        </a>
+        <a href="#feature" class="flex items-center gap-3 hover:text-kk-amber">
+          <i data-lucide="heart" class="w-5 h-5 text-kk-amber"></i>こだわり（流儀）
+        </a>
+        <a href="#store" class="flex items-center gap-3 hover:text-kk-amber">
+          <i data-lucide="map-pin" class="w-5 h-5 text-kk-amber"></i>店舗検索
+        </a>
+        <a href="#" class="flex items-center gap-3 hover:text-kk-amber">
+          <i data-lucide="ticket" class="w-5 h-5 text-kk-amber"></i>クーポン
+        </a>
+        <a href="#" class="flex items-center gap-3 hover:text-kk-amber">
+          <i data-lucide="briefcase" class="w-5 h-5 text-kk-amber"></i>採用情報
+        </a>
+        <a href="#" class="flex items-center gap-3 hover:text-kk-amber">
+          <i data-lucide="info" class="w-5 h-5 text-kk-amber"></i>会社概要
+        </a>
+      </nav>
+      <!-- CTAボタン群 -->
+      <div class="mt-auto flex flex-col gap-3">
+        <a href="#store"
+           class="flex items-center justify-center gap-2 bg-kk-amber text-white font-bold py-3.5 rounded-full text-sm">
+          <i data-lucide="map-pin" class="w-5 h-5"></i>近くの店舗を探す
+        </a>
+        <a href="#"
+           class="flex items-center justify-center gap-2 bg-[#06b22c] text-white font-bold py-3.5 rounded-full text-sm">
+          <i data-lucide="message-circle" class="w-5 h-5"></i>LINE公式
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== MAIN CONTENT ========== -->
+  <main class="pt-14 lg:pt-16 pb-[60px] md:pb-0">
+
+    <!-- ========== HERO ========== -->
+    <section class="relative w-full">
+
+
+      <!-- メインビジュアル -->
+      <div class="w-full h-[480px] lg:h-[700px] overflow-hidden bg-kk-black">
+        <video src="assets/fv02.mp4" autoplay loop muted playsinline class="w-full h-full object-cover opacity-90"></video>
+      </div>
+
+      <!-- グラデーションオーバーレイ + テキスト -->
+      <div class="absolute inset-0 bg-black/40 flex flex-col items-center justify-center text-center px-4">
+        
+        <!-- ロゴエリア（常に中央） -->
+        <div class="w-full max-w-4xl flex flex-col items-center">
+          <div class="lg:mb-16">
+            <img src="assets/logo_cocoyane.png" alt="お好み焼きはここやねん" class="h-28 sm:h-40 lg:h-64 w-auto brightness-0 invert opacity-95">
+          </div>
+        </div>
+
+        <!-- CTAボタン（SP: 下部に浮かせる / PC: ロゴ直下） -->
+        <div class="absolute bottom-10 lg:static lg:mt-0 w-full px-4 flex justify-center">
+          <div class="grid grid-cols-2 gap-3 sm:flex sm:flex-row justify-center w-full max-w-lg">
+            <a href="#store"
+               class="flex items-center justify-center gap-1.5 bg-red-600 text-white font-bold text-[11px] sm:text-base px-2 sm:px-10 py-4 sm:py-4 rounded-none hover:bg-red-700 transition-all">
+              <i data-lucide="map-pin" class="w-4 h-4"></i>店舗を探す
+            </a>
+            <a href="menu.html"
+               class="flex items-center justify-center gap-1.5 bg-white/15 backdrop-blur-sm text-white border border-white/40 font-bold text-[11px] sm:text-base px-2 sm:px-10 py-4 sm:py-4 rounded-none hover:bg-white/25 transition-all">
+              <i data-lucide="utensils" class="w-4 h-4"></i>メニューを見る
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========== 限定メニュー・トピックス（自動ループカルーセル） ========== -->
+    <section id="topics" class="bg-white overflow-hidden">
+
+      <!-- セクションヘッダー -->
+      <div class="text-center pt-14 pb-10 px-4">
+        <h2 class="flex items-center justify-center gap-3 font-serif font-bold text-kk-black" style="font-size: clamp(20px, 2.8vw, 30px);">
+          <img src="assets/hera.png" alt="" class="h-[1.2em] w-auto">
+          限定メニュー・トピックス
+        </h2>
+      </div>
+
+      <!-- カルーセルラッパー -->
+      <div class="relative max-w-[1200px] mx-auto px-4 sm:px-8 pb-14">
+
+        <!-- スライドトラック -->
+        <div id="topics-track-wrapper" class="overflow-hidden">
+          <div id="topics-track" class="flex gap-4 lg:gap-6 transition-transform duration-500 ease-in-out">
+
+            <!-- スライド1 -->
+            <div class="topics-slide flex-shrink-0 w-[80vw] sm:w-[55vw] lg:w-[calc(33.333%-16px)] aspect-[4/3] rounded-2xl overflow-hidden shadow-md group cursor-pointer">
+              <img src="assets/topic01.jpg" alt="トピックス1" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+            </div>
+
+            <!-- スライド2 -->
+            <div class="topics-slide flex-shrink-0 w-[80vw] sm:w-[55vw] lg:w-[calc(33.333%-16px)] aspect-[4/3] rounded-2xl overflow-hidden shadow-md group cursor-pointer">
+              <img src="assets/topic02.jpg" alt="トピックス2" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+            </div>
+
+            <!-- スライド3 -->
+            <div class="topics-slide flex-shrink-0 w-[80vw] sm:w-[55vw] lg:w-[calc(33.333%-16px)] aspect-[4/3] rounded-2xl overflow-hidden shadow-md group cursor-pointer">
+              <img src="assets/topic03.png" alt="トピックス3" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
+            </div>
+
+            <!-- ループ用クローン（JS で複製） -->
+          </div>
+        </div>
+
+        <!-- 前後ボタン（PC のみ表示） -->
+        <button id="topics-prev"
+          class="hidden lg:flex absolute left-0 top-1/2 -translate-y-8 -translate-x-0 z-10 w-10 h-10 rounded-full bg-white shadow-lg border border-kk-border items-center justify-center hover:bg-kk-cream transition-colors"
+          aria-label="前へ">
+          <i data-lucide="chevron-left" class="w-5 h-5 text-kk-black"></i>
+        </button>
+        <button id="topics-next"
+          class="hidden lg:flex absolute right-0 top-1/2 -translate-y-8 translate-x-0 z-10 w-10 h-10 rounded-full bg-white shadow-lg border border-kk-border items-center justify-center hover:bg-kk-cream transition-colors"
+          aria-label="次へ">
+          <i data-lucide="chevron-right" class="w-5 h-5 text-kk-black"></i>
+        </button>
+
+        <!-- ドットインジケーター -->
+        <div id="topics-dots" class="flex justify-center gap-2 mt-6">
+          <!-- JS で生成 -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== 人気のメニュー（POPULAR MENU） ========== -->
+    <section id="popular" class="bg-kk-cream py-16 lg:py-24 px-4 sm:px-6">
+      <div class="relative max-w-5xl mx-auto">
+
+
+        <!-- セクションヘッダー -->
+        <div class="text-center mb-10 lg:mb-14">
+          <h2 class="flex items-center justify-center gap-3 font-serif font-bold text-kk-black"
+              style="font-size: clamp(20px, 2.8vw, 30px);">
+            <img src="assets/hera.png" alt="" class="h-[1.2em] w-auto">
+            人気のメニュー
+          </h2>
+        </div>
+
+        <!-- SP: 横スクロール / PC: 3カラムグリッド -->
+        <div class="snap-x lg:grid lg:grid-cols-3 lg:gap-6 lg:overflow-visible lg:flex-none">
+
+          <!-- カード1 -->
+          <div class="snap-item w-[78vw] sm:w-[52vw] lg:w-auto bg-white rounded-2xl overflow-hidden shadow-sm border border-kk-border">
+            <div class="w-full aspect-video overflow-hidden bg-kk-black">
+              <img src="assets/menu1.jpg" alt="スペシャルお好み焼き" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+            </div>
+            <div class="p-4 sm:p-5">
+              <span class="text-xs text-kk-amber font-bold tracking-wide">お好み焼き</span>
+              <h3 class="font-bold text-base mt-1.5 mb-2 text-kk-black">スペシャルお好み焼き</h3>
+              <p class="text-xs text-kk-sub leading-relaxed">国産キャベツたっぷり、有機ソースで仕上げた看板メニュー。</p>
+              <p class="text-kk-amber font-bold text-sm mt-3">¥1,280〜</p>
+            </div>
+          </div>
+
+          <!-- カード2 -->
+          <div class="snap-item w-[78vw] sm:w-[52vw] lg:w-auto bg-white rounded-2xl overflow-hidden shadow-sm border border-kk-border">
+            <div class="w-full aspect-video overflow-hidden bg-kk-black">
+              <img src="assets/menu2.jpg" alt="極太生麺焼きそば" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+            </div>
+            <div class="p-4 sm:p-5">
+              <span class="text-xs text-kk-amber font-bold tracking-wide">焼きそば</span>
+              <h3 class="font-bold text-base mt-1.5 mb-2 text-kk-black">極太生麺焼きそば</h3>
+              <p class="text-xs text-kk-sub leading-relaxed">北海道産小麦の極太生麺を注文ごとに茹で上げるモチモチ食感。</p>
+              <p class="text-kk-amber font-bold text-sm mt-3">¥980〜</p>
+            </div>
+          </div>
+
+          <!-- カード3 -->
+          <div class="snap-item w-[78vw] sm:w-[52vw] lg:w-auto bg-white rounded-2xl overflow-hidden shadow-sm border border-kk-border">
+            <div class="w-full aspect-video overflow-hidden bg-kk-black">
+              <img src="assets/menu3.jpg" alt="国産牛ホルモン焼き" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+            </div>
+            <div class="p-4 sm:p-5">
+              <span class="text-xs text-kk-amber font-bold tracking-wide">鉄板焼き</span>
+              <h3 class="font-bold text-base mt-1.5 mb-2 text-kk-black">国産牛ホルモン焼き</h3>
+              <p class="text-xs text-kk-sub leading-relaxed">希少な国産牛の小腸（ホルモン）。プリプリの食感をお楽しみに。</p>
+              <p class="text-kk-amber font-bold text-sm mt-3">¥1,080〜</p>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- スクロールインジケーター（SP） -->
+        <div class="flex justify-center gap-1.5 mt-5 lg:hidden">
+          <span class="w-6 h-1 rounded-full bg-kk-amber"></span>
+          <span class="w-1.5 h-1 rounded-full bg-kk-border"></span>
+          <span class="w-1.5 h-1 rounded-full bg-kk-border"></span>
+        </div>
+
+        <div class="text-center mt-10">
+          <a href="menu.html"
+             class="inline-flex items-center gap-2 border-2 border-kk-brown text-kk-brown font-bold text-sm px-8 py-3 rounded-full hover:bg-kk-brown hover:text-white">
+            <i data-lucide="utensils" class="w-4 h-4"></i>メニューを全て見る
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== 店舗検索 CTA ========== -->
+    <section id="store" class="bg-white py-16 lg:py-24 px-4 sm:px-6">
+      <div class="relative max-w-3xl mx-auto text-center">
+
+
+        <h2 class="flex items-center justify-center gap-3 font-serif font-bold text-kk-black mb-4"
+            style="font-size: clamp(20px, 2.8vw, 30px);">
+          <img src="assets/hera.png" alt="" class="h-[1.2em] w-auto">
+          お近くの店舗を探す
+        </h2>
+        <p class="text-kk-sub text-sm mb-9 leading-relaxed">現在地またはエリアから、ここやねんの店舗を素早く検索</p>
+
+        <!-- 検索バー -->
+        <div class="flex flex-col sm:flex-row gap-3 max-w-[520px] mx-auto mb-5">
+          <div class="flex-1 flex items-center gap-2 bg-white border border-kk-border rounded-full px-5 h-12 sm:h-12">
+            <i data-lucide="map-pin" class="w-4 h-4 text-kk-sub flex-shrink-0"></i>
+            <span class="text-kk-sub text-sm">エリア・駅名で検索</span>
+          </div>
+          <button class="flex items-center justify-center gap-2 bg-kk-amber text-white font-bold text-sm px-7 h-12 rounded-full hover:bg-kk-brown whitespace-nowrap">
+            <i data-lucide="search" class="w-4 h-4"></i>検索
+          </button>
+        </div>
+
+        <a href="#" class="inline-flex items-center gap-1.5 text-sm text-kk-sub hover:text-kk-brown">
+          <i data-lucide="navigation" class="w-4 h-4"></i>現在地から探す
+        </a>
+
+        <!-- エリア一覧 -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-10 text-sm">
+          <a href="#"
+             class="bg-white rounded-xl py-3 px-4 font-bold text-kk-black border border-kk-border hover:bg-kk-amber hover:text-white hover:border-kk-amber shadow-sm">京都市内</a>
+          <a href="#"
+             class="bg-white rounded-xl py-3 px-4 font-bold text-kk-black border border-kk-border hover:bg-kk-amber hover:text-white hover:border-kk-amber shadow-sm">大阪府</a>
+          <a href="#"
+             class="bg-white rounded-xl py-3 px-4 font-bold text-kk-black border border-kk-border hover:bg-kk-amber hover:text-white hover:border-kk-amber shadow-sm">滋賀県</a>
+          <a href="#"
+             class="bg-white rounded-xl py-3 px-4 font-bold text-kk-black border border-kk-border hover:bg-kk-amber hover:text-white hover:border-kk-amber shadow-sm">その他</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== Instagram ========== -->
+    <section id="instagram" class="bg-kk-cream py-16 lg:py-24 px-4 sm:px-6">
+      <div class="relative max-w-5xl mx-auto text-center">
+        <h2 class="flex items-center justify-center gap-3 font-serif font-bold text-kk-black mb-4" style="font-size: clamp(20px, 2.8vw, 30px);">
+          <img src="assets/hera.png" alt="" class="h-[1.2em] w-auto">
+          公式Instagram
+        </h2>
+        <p class="text-kk-sub text-sm mb-9 leading-relaxed">最新情報や美味しく食べるコツをお届けします！</p>
+
+        <!-- Instagram グリッド (ダミー画像) -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
+          <a href="#" class="block aspect-square overflow-hidden rounded-xl bg-zinc-200 group relative">
+            <img src="https://images.unsplash.com/photo-1551782450-a2132b4ba21d?q=80&w=600&auto=format&fit=crop" alt="Instagram 1" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+            <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+              <i data-lucide="instagram" class="w-8 h-8 text-white"></i>
+            </div>
+          </a>
+          <a href="#" class="block aspect-square overflow-hidden rounded-xl bg-zinc-200 group relative">
+            <img src="https://images.unsplash.com/photo-1563379926898-05f4575a45d8?q=80&w=600&auto=format&fit=crop" alt="Instagram 2" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+            <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+              <i data-lucide="instagram" class="w-8 h-8 text-white"></i>
+            </div>
+          </a>
+          <a href="#" class="block aspect-square overflow-hidden rounded-xl bg-zinc-200 group relative">
+            <img src="https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=600&auto=format&fit=crop" alt="Instagram 3" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+            <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+              <i data-lucide="instagram" class="w-8 h-8 text-white"></i>
+            </div>
+          </a>
+          <a href="#" class="block aspect-square overflow-hidden rounded-xl bg-zinc-200 group relative">
+            <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=600&auto=format&fit=crop" alt="Instagram 4" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+            <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+              <i data-lucide="instagram" class="w-8 h-8 text-white"></i>
+            </div>
+          </a>
+        </div>
+
+        <a href="#" class="inline-flex items-center gap-2 border border-kk-amber text-kk-amber font-bold text-sm px-8 py-3 rounded-full hover:bg-kk-amber hover:text-white transition-colors">
+          <i data-lucide="instagram" class="w-4 h-4"></i>Instagramを見る
+        </a>
+      </div>
+    </section>
+
+    <!-- ========== こだわりダイジェスト（OUR PRIDE） ========== -->
+    <section id="feature" class="bg-kk-black py-16 lg:py-24 px-4 sm:px-6">
+      <div class="relative max-w-5xl mx-auto">
+
+
+        <!-- セクションヘッダー -->
+        <div class="text-center mb-10 lg:mb-16">
+          <h2 class="flex items-center justify-center gap-3 font-serif font-bold text-white mb-4"
+              style="font-size: clamp(20px, 2.8vw, 30px);">
+            <img src="assets/hera.png" alt="" class="h-[1.2em] w-auto brightness-0 invert">
+            ここやねんの6つのこだわり
+          </h2>
+          <p class="text-zinc-400 text-sm max-w-sm mx-auto leading-relaxed">素材から焼き方まで、妥協なき品質へのこだわり</p>
+        </div>
+
+        <!-- グリッド（SP: 2カラム / PC: 3カラム） -->
+        <div class="grid grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-5">
+
+          <!-- こだわり1 -->
+          <div class="bg-zinc-900 rounded-2xl overflow-hidden border border-zinc-800 flex flex-col group">
+            <div class="w-full aspect-[4/3] overflow-hidden bg-kk-black">
+              <img src="assets/kodawari1.png" alt="こだわりのソース" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-300">
+            </div>
+            <div class="p-4 lg:p-5">
+              <div class="w-8 h-8 rounded-full bg-kk-amber/15 flex items-center justify-center mb-3">
+                <i data-lucide="droplet" class="w-4 h-4 text-kk-amber"></i>
+              </div>
+              <h3 class="font-bold text-white text-sm lg:text-base mb-1.5">こだわりのソース</h3>
+              <p class="text-zinc-400 text-xs leading-relaxed">有機野菜主原料・無添加の自然派ソース</p>
+            </div>
+          </div>
+
+          <!-- こだわり2 -->
+          <div class="bg-zinc-900 rounded-2xl overflow-hidden border border-zinc-800 flex flex-col group">
+            <div class="w-full aspect-[4/3] overflow-hidden bg-kk-black">
+              <img src="assets/kodawari2.png" alt="滋賀産小麦の生地" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-300">
+            </div>
+            <div class="p-4 lg:p-5">
+              <div class="w-8 h-8 rounded-full bg-kk-amber/15 flex items-center justify-center mb-3">
+                <i data-lucide="layers" class="w-4 h-4 text-kk-amber"></i>
+              </div>
+              <h3 class="font-bold text-white text-sm lg:text-base mb-1.5">滋賀産小麦の生地</h3>
+              <p class="text-zinc-400 text-xs leading-relaxed">ふわっとした軽さとキャベツの甘みを引き出す</p>
+            </div>
+          </div>
+
+          <!-- こだわり3 -->
+          <div class="bg-zinc-900 rounded-2xl overflow-hidden border border-zinc-800 flex flex-col group">
+            <div class="w-full aspect-[4/3] overflow-hidden bg-kk-black">
+              <img src="assets/kodawari3.png" alt="極太生麺（茹で上げ）" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-300">
+            </div>
+            <div class="p-4 lg:p-5">
+              <div class="w-8 h-8 rounded-full bg-kk-amber/15 flex items-center justify-center mb-3">
+                <i data-lucide="zap" class="w-4 h-4 text-kk-amber"></i>
+              </div>
+              <h3 class="font-bold text-white text-sm lg:text-base mb-1.5">極太生麺（茹で上げ）</h3>
+              <p class="text-zinc-400 text-xs leading-relaxed">北海道産小麦、注文ごとに茹で上げるモチモチ食感</p>
+            </div>
+          </div>
+
+          <!-- こだわり4 -->
+          <div class="bg-zinc-900 rounded-2xl overflow-hidden border border-zinc-800 flex flex-col group">
+            <div class="w-full aspect-[4/3] overflow-hidden bg-kk-black">
+              <img src="assets/kodawari4.png" alt="職人の焼き技術" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-300">
+            </div>
+            <div class="p-4 lg:p-5">
+              <div class="w-8 h-8 rounded-full bg-kk-amber/15 flex items-center justify-center mb-3">
+                <i data-lucide="flame" class="w-4 h-4 text-kk-amber"></i>
+              </div>
+              <h3 class="font-bold text-white text-sm lg:text-base mb-1.5">職人の焼き技術</h3>
+              <p class="text-zinc-400 text-xs leading-relaxed">厚い鉄板で熟練スタッフがふっくら焼き上げる</p>
+            </div>
+          </div>
+
+          <!-- こだわり5 -->
+          <div class="bg-zinc-900 rounded-2xl overflow-hidden border border-zinc-800 flex flex-col group">
+            <div class="w-full aspect-[4/3] overflow-hidden bg-kk-black">
+              <img src="assets/kodawari5.png" alt="国産キャベツ" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-300">
+            </div>
+            <div class="p-4 lg:p-5">
+              <div class="w-8 h-8 rounded-full bg-kk-amber/15 flex items-center justify-center mb-3">
+                <i data-lucide="leaf" class="w-4 h-4 text-kk-amber"></i>
+              </div>
+              <h3 class="font-bold text-white text-sm lg:text-base mb-1.5">国産キャベツ</h3>
+              <p class="text-zinc-400 text-xs leading-relaxed">季節に合わせたカットで甘みと食感を最大化</p>
+            </div>
+          </div>
+
+          <!-- こだわり6 -->
+          <div class="bg-zinc-900 rounded-2xl overflow-hidden border border-zinc-800 flex flex-col group">
+            <div class="w-full aspect-[4/3] overflow-hidden bg-kk-black">
+              <img src="assets/kodawari6.png" alt="希少国産牛ホルモン" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-300">
+            </div>
+            <div class="p-4 lg:p-5">
+              <div class="w-8 h-8 rounded-full bg-kk-amber/15 flex items-center justify-center mb-3">
+                <i data-lucide="star" class="w-4 h-4 text-kk-amber"></i>
+              </div>
+              <h3 class="font-bold text-white text-sm lg:text-base mb-1.5">希少国産牛ホルモン</h3>
+              <p class="text-zinc-400 text-xs leading-relaxed">希少な国産牛の小腸、プリプリの食感</p>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="text-center mt-10">
+          <a href="#"
+             class="inline-flex items-center gap-2 border border-kk-amber text-kk-amber font-bold text-sm px-8 py-3 rounded-full hover:bg-kk-amber hover:text-white">
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>こだわりの詳細を読む
+          </a>
+        </div>
+      </div>
+    </section>
+
+
+
+    <!-- ========== お知らせ（NEWS） ========== -->
+    <section id="news" class="bg-white py-16 lg:py-24 px-4 sm:px-6">
+      <div class="relative max-w-5xl mx-auto">
+
+
+        <!-- ヘッダー行 -->
+        <div class="flex items-end justify-between mb-8">
+          <div>
+            <h2 class="flex items-center gap-3 font-serif font-bold text-kk-black"
+                style="font-size: clamp(18px, 2.5vw, 26px);">
+              <img src="assets/hera.png" alt="" class="h-[1.2em] w-auto">
+              お知らせ
+            </h2>
+          </div>
+          <a href="#" class="hidden sm:flex items-center gap-1 text-sm text-kk-brown font-bold hover:underline underline-offset-2">
+            一覧を見る<i data-lucide="chevron-right" class="w-4 h-4"></i>
+          </a>
+        </div>
+
+        <!-- ニュースリスト -->
+        <ul class="divide-y divide-kk-border">
+          <li class="py-4">
+            <a href="#" class="flex items-start gap-3 sm:gap-4 hover:opacity-70">
+              <time class="text-xs text-zinc-400 mt-0.5 whitespace-nowrap pt-0.5">2026.04.10</time>
+              <span class="text-xs bg-kk-amber/15 text-kk-brown font-bold px-2.5 py-0.5 rounded whitespace-nowrap flex-shrink-0">お知らせ</span>
+              <span class="text-sm text-kk-black leading-relaxed">春の限定メニュー「春キャベツのお好み焼き」を期間限定で提供開始しました</span>
+            </a>
+          </li>
+          <li class="py-4">
+            <a href="#" class="flex items-start gap-3 sm:gap-4 hover:opacity-70">
+              <time class="text-xs text-zinc-400 mt-0.5 whitespace-nowrap pt-0.5">2026.04.01</time>
+              <span class="text-xs bg-zinc-100 text-zinc-600 font-bold px-2.5 py-0.5 rounded whitespace-nowrap flex-shrink-0">店舗情報</span>
+              <span class="text-sm text-kk-black leading-relaxed">祇園店の営業時間を変更いたします。詳細は店舗情報ページをご確認ください</span>
+            </a>
+          </li>
+          <li class="py-4">
+            <a href="#" class="flex items-start gap-3 sm:gap-4 hover:opacity-70">
+              <time class="text-xs text-zinc-400 mt-0.5 whitespace-nowrap pt-0.5">2026.03.20</time>
+              <span class="text-xs bg-kk-amber/15 text-kk-brown font-bold px-2.5 py-0.5 rounded whitespace-nowrap flex-shrink-0">クーポン</span>
+              <span class="text-sm text-kk-black leading-relaxed">LINE公式アカウント友達追加で500円割引クーポンをプレゼント！</span>
+            </a>
+          </li>
+          <li class="py-4">
+            <a href="#" class="flex items-start gap-3 sm:gap-4 hover:opacity-70">
+              <time class="text-xs text-zinc-400 mt-0.5 whitespace-nowrap pt-0.5">2026.03.15</time>
+              <span class="text-xs bg-zinc-100 text-zinc-600 font-bold px-2.5 py-0.5 rounded whitespace-nowrap flex-shrink-0">採用</span>
+              <span class="text-sm text-kk-black leading-relaxed">2026年春 新スタッフ募集のお知らせ（京都・滋賀エリア）</span>
+            </a>
+          </li>
+        </ul>
+
+        <!-- 一覧リンク（SP） -->
+        <div class="text-center mt-6 sm:hidden">
+          <a href="#" class="inline-flex items-center gap-1 text-sm text-kk-brown font-bold hover:underline underline-offset-2">
+            一覧を見る<i data-lucide="chevron-right" class="w-4 h-4"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== LINE クーポン CTA ========== -->
+    <section class="bg-kk-amber py-12 px-4 sm:px-6">
+      <div class="relative max-w-3xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6">
+
+
+        <!-- テキスト -->
+        <div class="text-white text-center sm:text-left">
+          <p class="text-sm font-bold mb-1 opacity-90">LINEで友達登録すると</p>
+          <p class="font-serif font-bold text-2xl sm:text-3xl">500円割引クーポン</p>
+          <p class="text-sm mt-1 opacity-80">プレゼント！今すぐゲット</p>
+        </div>
+
+        <!-- LINEボタン -->
+        <a href="#"
+           class="flex items-center gap-2 bg-[#06b22c] text-white font-bold px-8 py-4 rounded-full shadow-lg hover:brightness-90 whitespace-nowrap text-sm">
+          <i data-lucide="message-circle" class="w-5 h-5"></i>
+          LINE で受け取る
+        </a>
+      </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="bg-kk-black text-zinc-400 py-12 px-4 sm:px-6">
+      <div class="relative max-w-5xl mx-auto">
+
+
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
+
+          <!-- ブランド -->
+          <div class="col-span-2 lg:col-span-1">
+            <img src="assets/logo_cocoyane.png" alt="ここやねん" class="h-8 w-auto mb-4">
+            <p class="text-xs leading-relaxed text-zinc-400">京都発、こだわりのお好み焼き。<br>有機ソース・厳選素材が生む、本物の味。</p>
+          </div>
+
+          <!-- メニュー -->
+          <div>
+            <p class="text-white font-bold text-sm mb-4">メニュー</p>
+            <ul class="text-xs space-y-2.5">
+              <li><a href="menu.html" class="hover:text-white transition-colors">メニュー一覧</a></li>
+              <li><a href="#" class="hover:text-white transition-colors">カロリー・アレルゲン</a></li>
+              <li><a href="#feature" class="hover:text-white transition-colors">こだわり（流儀）</a></li>
+            </ul>
+          </div>
+
+          <!-- 店舗・サービス -->
+          <div>
+            <p class="text-white font-bold text-sm mb-4">店舗・サービス</p>
+            <ul class="text-xs space-y-2.5">
+              <li><a href="#store" class="hover:text-white transition-colors">店舗検索</a></li>
+              <li><a href="#" class="hover:text-white transition-colors">ネット注文</a></li>
+              <li><a href="#" class="hover:text-white transition-colors">クーポン</a></li>
+            </ul>
+          </div>
+
+          <!-- 会社情報 -->
+          <div>
+            <p class="text-white font-bold text-sm mb-4">会社情報</p>
+            <ul class="text-xs space-y-2.5">
+              <li><a href="#" class="hover:text-white transition-colors">会社概要</a></li>
+              <li><a href="#" class="hover:text-white transition-colors">採用情報</a></li>
+              <li><a href="#" class="hover:text-white transition-colors">お問い合わせ</a></li>
+              <li><a href="#" class="hover:text-white transition-colors">プライバシーポリシー</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="border-t border-zinc-800 pt-6 text-center text-xs text-zinc-500">
+          <p>&copy; 2026 お好み焼きはここやねん. All Rights Reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+  </main>
+
+  <!-- ========== SP ボトムナビ（コンバージョン特化・固定） ========== -->
+  <nav class="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-kk-border z-50 flex items-stretch bottom-nav"
+       style="height: calc(60px + env(safe-area-inset-bottom, 0px));"
+       aria-label="コンバージョンナビ">
+
+    <!-- メニュー -->
+    <a href="menu.html"
+       class="flex-1 flex flex-col items-center justify-center gap-0.5 text-zinc-500 hover:text-kk-amber active:text-kk-amber min-h-[60px]">
+      <i data-lucide="book-open" class="w-5 h-5"></i>
+      <span class="text-[10px] font-bold">メニュー</span>
+    </a>
+
+    <!-- 店舗を探す（アクセントBG） -->
+    <a href="#store"
+       class="flex-1 flex flex-col items-center justify-center gap-0.5 bg-red-600 text-white hover:bg-red-700 min-h-[60px]">
+      <i data-lucide="map-pin" class="w-5 h-5"></i>
+      <span class="text-[10px] font-bold">店舗を探す</span>
+    </a>
+
+    <!-- クーポン -->
+    <a href="#"
+       class="flex-1 flex flex-col items-center justify-center gap-0.5 text-zinc-500 hover:text-kk-amber active:text-kk-amber min-h-[60px]">
+      <i data-lucide="ticket" class="w-5 h-5"></i>
+      <span class="text-[10px] font-bold">クーポン</span>
+    </a>
+
+  </nav>
+
+  <script>
+    // Lucide Icons 初期化
+    lucide.createIcons();
+
+    // ─── ドロワーメニュー制御 ───
+    const menuBtn     = document.getElementById('menu-btn');
+    const menuClose   = document.getElementById('menu-close');
+    const drawer      = document.getElementById('drawer');
+    const drawerOverlay = document.getElementById('drawer-overlay');
+
+    function openDrawer() {
+      drawer.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeDrawer() {
+      drawer.classList.add('hidden');
+      document.body.style.overflow = '';
+    }
+
+    menuBtn.addEventListener('click', openDrawer);
+    menuClose.addEventListener('click', closeDrawer);
+    drawerOverlay.addEventListener('click', closeDrawer);
+
+    // ─── ドロワー内のリンクでスムーズに閉じる ───
+    drawer.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', closeDrawer);
+    });
+
+    // ─── トピックスカルーセル ───
+    (function() {
+      const track = document.getElementById('topics-track');
+      const wrapper = document.getElementById('topics-track-wrapper');
+      const dotsContainer = document.getElementById('topics-dots');
+      const prevBtn = document.getElementById('topics-prev');
+      const nextBtn = document.getElementById('topics-next');
+
+      if (!track || !wrapper) return;
+
+      const originalSlides = Array.from(track.querySelectorAll('.topics-slide'));
+      const total = originalSlides.length;
+      let current = 0;
+      let autoTimer = null;
+      let isPC = window.innerWidth >= 1024;
+
+      // ── クローンを前後に追加してループを実現 ──
+      // 末尾クローン（先頭に追加）
+      originalSlides.slice().reverse().forEach(slide => {
+        const clone = slide.cloneNode(true);
+        clone.setAttribute('aria-hidden', 'true');
+        track.insertBefore(clone, track.firstChild);
+      });
+      // 先頭クローン（末尾に追加）
+      originalSlides.forEach(slide => {
+        const clone = slide.cloneNode(true);
+        clone.setAttribute('aria-hidden', 'true');
+        track.appendChild(clone);
+      });
+
+      const allSlides = Array.from(track.querySelectorAll('.topics-slide'));
+      // クローン分だけオフセット
+      let idx = total; // 実スライドは index[total]〜[total*2-1]
+
+      // ドット生成
+      for (let i = 0; i < total; i++) {
+        const dot = document.createElement('button');
+        dot.className = 'w-2.5 h-2.5 rounded-full border border-kk-amber transition-colors';
+        dot.setAttribute('aria-label', `スライド ${i+1}`);
+        dot.addEventListener('click', () => { goTo(i + total); });
+        dotsContainer.appendChild(dot);
+      }
+      const dots = Array.from(dotsContainer.querySelectorAll('button'));
+
+      function getSlideWidth() {
+        const slide = allSlides[0];
+        if (!slide) return 0;
+        const gap = isPC ? 24 : 16;
+        return slide.offsetWidth + gap;
+      }
+
+      function updateDots(realIdx) {
+        const pos = ((realIdx - total) % total + total) % total;
+        dots.forEach((d, i) => {
+          d.style.background = i === pos ? '#c97c2a' : '';
+        });
+      }
+
+      function goTo(newIdx, animate = true) {
+        idx = newIdx;
+        const slideW = getSlideWidth();
+        track.style.transition = animate ? 'transform 0.5s ease-in-out' : 'none';
+        track.style.transform = `translateX(-${idx * slideW}px)`;
+        updateDots(idx);
+      }
+
+      // 初期位置へ（アニメーションなし）
+      goTo(idx, false);
+
+      // トランジション終了後にループジャンプ
+      track.addEventListener('transitionend', () => {
+        if (idx >= total * 2) {
+          goTo(total, false);
+        } else if (idx < total) {
+          goTo(total * 2 - 1, false);
+        }
+      });
+
+      function next() { goTo(idx + 1); }
+      function prev() { goTo(idx - 1); }
+
+      if (nextBtn) nextBtn.addEventListener('click', () => { resetAuto(); next(); });
+      if (prevBtn) prevBtn.addEventListener('click', () => { resetAuto(); prev(); });
+
+      // 自動再生
+      function startAuto() { autoTimer = setInterval(next, 4000); }
+      function resetAuto() { clearInterval(autoTimer); startAuto(); }
+      startAuto();
+
+      // タッチスワイプ対応
+      let touchStartX = 0;
+      wrapper.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+      wrapper.addEventListener('touchend', e => {
+        const diff = touchStartX - e.changedTouches[0].clientX;
+        if (Math.abs(diff) > 40) { resetAuto(); diff > 0 ? next() : prev(); }
+      }, { passive: true });
+
+      // リサイズ対応
+      window.addEventListener('resize', () => {
+        isPC = window.innerWidth >= 1024;
+        goTo(idx, false);
+      });
+    })();
+  </script>
+</body>
+</html>
