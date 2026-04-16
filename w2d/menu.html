@@ -105,8 +105,18 @@
 
 <body class="bg-white text-kk-black">
 
-  <!-- ========== HEADER ========== -->
-  <header class="fixed top-0 left-0 right-0 h-14 lg:h-16 bg-white z-50 shadow-sm border-b-2 border-black">
+  <!-- ========== HEADER & ANNOUNCEMENT ========== -->
+  <div class="fixed top-0 left-0 right-0 z-50">
+    <!-- Announcement Bar -->
+    <div class="bg-zinc-100 border-b border-zinc-200 py-2 px-4 text-center">
+      <p class="text-[10px] sm:text-xs text-zinc-600 font-bold leading-tight">
+        ゴールデンウィーク期間中は営業時間が変わっております。ご注意ください
+        <a href="#" class="inline-block ml-1 text-kk-amber border-b border-kk-amber/30 hover:border-kk-amber transition-all">くわしくはこちら</a>
+      </p>
+    </div>
+
+    <!-- Header 本体 -->
+    <header class="h-14 lg:h-16 bg-white shadow-sm border-b-2 border-black">
     <div class="h-full max-w-7xl mx-auto px-4 flex items-center justify-between">
 
       <!-- ロゴ -->
@@ -141,6 +151,7 @@
       </div>
     </div>
   </header>
+</div>
 
   <!-- ========== SP ドロワーメニュー ========== -->
   <div id="drawer" class="fixed inset-0 z-[60] hidden">
@@ -182,7 +193,7 @@
   </div>
 
   <!-- ========== MAIN CONTENT ========== -->
-  <main class="pt-14 lg:pt-16 pb-[60px] md:pb-0">
+  <main class="pt-[92px] lg:pt-[100px] pb-[60px] md:pb-0 px-4">
 
     <!-- ========== ページヘッダー ========== -->
     <section class="bg-kk-black py-12 lg:py-20 px-4 relative overflow-hidden">
@@ -230,7 +241,12 @@
           <div>
             <h2 class="flex items-center gap-3 font-serif font-bold text-kk-black" style="font-size: clamp(22px, 3vw, 32px);">
               <img src="assets/hera.png" alt="" class="h-[1.2em] w-auto">
-              お好み焼き
+              <span class="relative inline-block isolate">
+                お好み焼き
+                <svg class="absolute -bottom-2 left-0 w-full h-3 text-kk-amber/40 z-[-1]" viewBox="0 0 300 20" preserveAspectRatio="none">
+                  <path d="M5,15 C50,10 150,10 295,15 C150,18 50,18 5,15" fill="currentColor" />
+                </svg>
+              </span>
             </h2>
           </div>
         </div>
@@ -355,7 +371,12 @@
           <div>
             <h2 class="flex items-center gap-3 font-serif font-bold text-kk-black" style="font-size: clamp(22px, 3vw, 32px);">
               <img src="assets/hera.png" alt="" class="h-[1.2em] w-auto">
-              焼きそば
+              <span class="relative inline-block isolate">
+                焼きそば
+                <svg class="absolute -bottom-2 left-0 w-full h-3 text-kk-amber/40 z-[-1]" viewBox="0 0 300 20" preserveAspectRatio="none">
+                  <path d="M5,15 C50,10 150,10 295,15 C150,18 50,18 5,15" fill="currentColor" />
+                </svg>
+              </span>
             </h2>
           </div>
         </div>
@@ -423,7 +444,12 @@
           <div class="relative z-10">
             <h2 class="flex items-center justify-center gap-3 font-serif font-bold text-white mb-2" style="font-size: clamp(24px, 3.5vw, 36px);">
               <img src="assets/hera.png" alt="" class="h-[1.2em] w-auto brightness-0 invert">
-              平日限定ランチ
+              <span class="relative inline-block isolate">
+                平日限定ランチ
+                <svg class="absolute -bottom-2 left-0 w-full h-3 text-kk-amber/60 z-[-1]" viewBox="0 0 300 20" preserveAspectRatio="none">
+                  <path d="M5,15 C50,10 150,10 295,15 C150,18 50,18 5,15" fill="currentColor" />
+                </svg>
+              </span>
             </h2>
             <p class="text-zinc-400 text-xs tracking-widest uppercase">11:00 - 15:00</p>
           </div>
@@ -484,7 +510,12 @@
           <div>
             <h2 class="flex items-center gap-3 font-serif font-bold text-white" style="font-size: clamp(22px, 3vw, 32px);">
               <img src="assets/hera.png" alt="" class="h-[1.2em] w-auto brightness-0 invert">
-              アレルギー・栄養成分情報
+              <span class="relative inline-block isolate">
+                アレルギー・栄養成分情報
+                <svg class="absolute -bottom-2 left-0 w-full h-3 text-kk-amber/60 z-[-1]" viewBox="0 0 300 20" preserveAspectRatio="none">
+                  <path d="M5,15 C50,10 150,10 295,15 C150,18 50,18 5,15" fill="currentColor" />
+                </svg>
+              </span>
             </h2>
           </div>
         </div>
@@ -552,7 +583,12 @@
       <div class="max-w-4xl mx-auto text-center">
         <h2 class="flex items-center justify-center gap-3 font-serif font-bold text-white mb-4" style="font-size: clamp(24px, 3.5vw, 36px);">
           <img src="assets/hera.png" alt="" class="h-[1.2em] w-auto brightness-0 invert">
-          ご予約・テイクアウト
+          <span class="relative inline-block isolate">
+            ご予約・テイクアウト
+            <svg class="absolute -bottom-2 left-0 w-full h-3 text-kk-amber/60 z-[-1]" viewBox="0 0 300 20" preserveAspectRatio="none">
+              <path d="M5,15 C50,10 150,10 295,15 C150,18 50,18 5,15" fill="currentColor" />
+            </svg>
+          </span>
         </h2>
         <p class="text-white/80 text-sm mb-10 leading-relaxed max-w-[600px] mx-auto">
           WEB予約またはお電話にて承ります。事前にテイクアウトのご注文をいただけますと、店頭でスムーズにお渡しが可能です。

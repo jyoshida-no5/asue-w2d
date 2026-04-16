@@ -68,8 +68,18 @@
 </head>
 <body class="bg-kokoya-cream text-kokoya-black">
 
-  <!-- ========== HEADER ========== -->
-  <header class="fixed top-0 left-0 right-0 h-16 bg-kokoya-black z-50 flex items-center justify-between px-4 border-b-2 border-black shadow-md">
+  <!-- ========== HEADER & ANNOUNCEMENT ========== -->
+  <div class="fixed top-0 left-0 right-0 z-50">
+    <!-- Announcement Bar -->
+    <div class="bg-zinc-100 border-b border-zinc-200 py-2 px-4 shadow-sm text-center">
+      <p class="text-[10px] sm:text-xs text-zinc-600 font-bold leading-tight">
+        ゴールデンウィーク期間中は営業時間が変わっております。ご注意ください
+        <a href="#" class="inline-block ml-1 text-kokoya-amber border-b border-kokoya-amber/30 hover:border-kokoya-amber transition-all">くわしくはこちら</a>
+      </p>
+    </div>
+
+    <!-- Header 本体 -->
+    <header class="h-16 bg-kokoya-black flex items-center justify-between px-4 border-b-2 border-black shadow-md">
     <div class="wf-label">nav</div>
     <!-- ロゴ -->
     <div class="flex items-center gap-2">
@@ -102,7 +112,9 @@
         <i data-lucide="menu" class="w-6 h-6"></i>
       </button>
     </div>
+    </div>
   </header>
+</div>
 
   <!-- ========== SP ドロワーメニュー ========== -->
   <div id="drawer" class="fixed inset-0 z-[60] hidden">
@@ -144,7 +156,7 @@
   </div>
 
   <!-- ========== MAIN CONTENT ========== -->
-  <main class="pt-16 pb-16 md:pb-0">
+  <main class="pt-[104px] lg:pt-[96px] pb-16 md:pb-0">
 
     <!-- ========== HERO ========== -->
     <section class="relative w-full" style="position:relative;">
@@ -185,7 +197,12 @@
         <div class="text-center mb-10">
           <h2 class="flex items-center justify-center gap-3 font-serif font-bold text-kokoya-black" style="font-size: clamp(20px, 2.8vw, 32px);">
             <img src="w2d/assets/hera.png" alt="" class="h-[1.2em] w-auto">
-            今月のおすすめ
+            <span class="relative inline-block isolate">
+              今月のおすすめ
+              <svg class="absolute -bottom-2 left-0 w-full h-3 text-kokoya-amber/40 z-[-1]" viewBox="0 0 300 20" preserveAspectRatio="none">
+                <path d="M5,15 C50,10 150,10 295,15 C150,18 50,18 5,15" fill="currentColor" />
+              </svg>
+            </span>
           </h2>
         </div>
 
@@ -248,7 +265,12 @@
           <h2 class="flex items-center justify-center gap-3 font-serif font-bold text-white mb-4"
               style="font-size: clamp(20px, 2.8vw, 30px);">
             <img src="w2d/assets/hera.png" alt="" class="h-[1.2em] w-auto brightness-0 invert">
-            ここやねんの6つのこだわり
+            <span class="relative inline-block isolate">
+              ここやねんの6つのこだわり
+              <svg class="absolute -bottom-2 left-0 w-full h-3 text-kokoya-amber/50 z-[-1]" viewBox="0 0 300 20" preserveAspectRatio="none">
+                <path d="M5,15 C50,10 150,10 295,15 C150,18 50,18 5,15" fill="currentColor" />
+              </svg>
+            </span>
           </h2>
         </div>
 
@@ -318,7 +340,12 @@
         <div class="wf-label">cta</div>
         <h2 class="flex items-center justify-center gap-3 font-serif font-bold text-kokoya-black mb-5" style="font-size: clamp(20px, 2.8vw, 32px);">
           <img src="w2d/assets/hera.png" alt="" class="h-[1.2em] w-auto">
-          お近くの店舗を探す
+          <span class="relative inline-block isolate">
+            お近くの店舗を探す
+            <svg class="absolute -bottom-2 left-0 w-full h-3 text-kokoya-amber/40 z-[-1]" viewBox="0 0 300 20" preserveAspectRatio="none">
+              <path d="M5,15 C50,10 150,10 295,15 C150,18 50,18 5,15" fill="currentColor" />
+            </svg>
+          </span>
         </h2>
         <p class="text-zinc-500 text-sm mb-8">現在地またはエリアから、ここやねんの店舗を素早く検索</p>
 
@@ -353,7 +380,12 @@
         <div class="flex items-end justify-between mb-8">
           <h2 class="flex items-center gap-3 font-serif font-bold text-kokoya-black" style="font-size: clamp(18px, 2.5vw, 26px);">
             <img src="w2d/assets/hera.png" alt="" class="h-[1.2em] w-auto">
-            お知らせ
+            <span class="relative inline-block isolate">
+              お知らせ
+              <svg class="absolute -bottom-1.5 left-0 w-full h-3 text-kokoya-amber/40 z-[-1]" viewBox="0 0 300 20" preserveAspectRatio="none">
+                <path d="M5,15 C50,10 150,10 295,15 C150,18 50,18 5,15" fill="currentColor" />
+              </svg>
+            </span>
           </h2>
           <a href="#" class="hidden sm:flex items-center gap-1 text-sm text-kokoya-brown font-bold hover:underline">
             一覧を見る<i data-lucide="chevron-right" class="w-4 h-4"></i>

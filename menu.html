@@ -85,8 +85,18 @@
 </head>
 <body class="bg-kokoya-cream text-kokoya-black">
 
-  <!-- ========== HEADER ========== -->
-  <header class="fixed top-0 left-0 right-0 h-16 bg-kokoya-black z-50 flex items-center justify-between px-4 border-b-2 border-black shadow-md">
+  <!-- ========== HEADER & ANNOUNCEMENT ========== -->
+  <div class="fixed top-0 left-0 right-0 z-50">
+    <!-- Announcement Bar -->
+    <div class="bg-zinc-100 border-b border-zinc-200 py-2 px-4 shadow-sm text-center">
+      <p class="text-[10px] sm:text-xs text-zinc-600 font-bold leading-tight">
+        ゴールデンウィーク期間中は営業時間が変わっております。ご注意ください
+        <a href="#" class="inline-block ml-1 text-kokoya-amber border-b border-kokoya-amber/30 hover:border-kokoya-amber transition-all">くわしくはこちら</a>
+      </p>
+    </div>
+
+    <!-- Header 本体 -->
+    <header class="h-16 bg-kokoya-black flex items-center justify-between px-4 border-b-2 border-black shadow-md">
     <div class="wf-label">nav</div>
     <div class="flex items-center gap-2">
       <a href="index.html" class="text-kokoya-amber font-serif font-bold text-lg leading-tight">ここやねん</a>
@@ -112,7 +122,9 @@
         <i data-lucide="menu" class="w-6 h-6"></i>
       </button>
     </div>
+    </div>
   </header>
+</div>
 
   <!-- ========== SP ドロワーメニュー ========== -->
   <div id="drawer" class="fixed inset-0 z-[60] hidden">
@@ -150,8 +162,8 @@
     </div>
   </div>
 
-  <!-- ========== MAIN ========== -->
-  <main class="pt-16 pb-16 md:pb-0">
+  <!-- ========== MAIN CONTENT ========== -->
+  <main class="pt-[104px] lg:pt-[96px] pb-16 md:pb-0">
 
     <!-- ========== ページヘッダー（hero風） ========== -->
     <section class="bg-kokoya-black py-10 lg:py-16 px-4 relative">
@@ -210,7 +222,12 @@
           <div>
             <h2 class="flex items-center gap-3 font-serif font-bold text-kokoya-black" style="font-size: clamp(20px, 2.5vw, 28px);">
               <img src="w2d/assets/hera.png" alt="" class="h-[1.2em] w-auto">
-              お好み焼き
+              <span class="relative inline-block isolate">
+                お好み焼き
+                <svg class="absolute -bottom-2 left-0 w-full h-3 text-kokoya-amber/40 z-[-1]" viewBox="0 0 300 20" preserveAspectRatio="none">
+                  <path d="M5,15 C50,10 150,10 295,15 C150,18 50,18 5,15" fill="currentColor" />
+                </svg>
+              </span>
             </h2>
           </div>
         </div>
@@ -348,7 +365,12 @@
           <div>
             <h2 class="flex items-center gap-3 font-serif font-bold text-kokoya-black" style="font-size: clamp(20px, 2.5vw, 28px);">
               <img src="w2d/assets/hera.png" alt="" class="h-[1.2em] w-auto">
-              焼きそば
+              <span class="relative inline-block isolate">
+                焼きそば
+                <svg class="absolute -bottom-2 left-0 w-full h-3 text-kokoya-amber/40 z-[-1]" viewBox="0 0 300 20" preserveAspectRatio="none">
+                  <path d="M5,15 C50,10 150,10 295,15 C150,18 50,18 5,15" fill="currentColor" />
+                </svg>
+              </span>
             </h2>
           </div>
         </div>
@@ -419,7 +441,12 @@
           <div>
             <h2 class="flex items-center gap-3 font-serif font-bold text-kokoya-black" style="font-size: clamp(20px, 2.5vw, 28px);">
               <img src="w2d/assets/hera.png" alt="" class="h-[1.2em] w-auto">
-              ランチメニュー
+              <span class="relative inline-block isolate">
+                ランチメニュー
+                <svg class="absolute -bottom-2 left-0 w-full h-3 text-kokoya-amber/40 z-[-1]" viewBox="0 0 300 20" preserveAspectRatio="none">
+                  <path d="M5,15 C50,10 150,10 295,15 C150,18 50,18 5,15" fill="currentColor" />
+                </svg>
+              </span>
             </h2>
           </div>
         </div>
@@ -475,7 +502,12 @@
           <div>
             <h2 class="flex items-center gap-3 font-serif font-bold text-kokoya-black" style="font-size: clamp(20px, 2.5vw, 28px);">
               <img src="w2d/assets/hera.png" alt="" class="h-[1.2em] w-auto">
-              アレルギー・栄養成分情報
+              <span class="relative inline-block isolate">
+                アレルギー・栄養成分情報
+                <svg class="absolute -bottom-2 left-0 w-full h-3 text-kokoya-amber/40 z-[-1]" viewBox="0 0 300 20" preserveAspectRatio="none">
+                  <path d="M5,15 C50,10 150,10 295,15 C150,18 50,18 5,15" fill="currentColor" />
+                </svg>
+              </span>
             </h2>
           </div>
         </div>
@@ -574,7 +606,12 @@
         <p class="text-kokoya-amber text-xs font-bold tracking-widest mb-3">RESERVATION</p>
         <h2 class="flex items-center justify-center gap-3 font-serif font-bold text-white mb-3" style="font-size: clamp(20px, 2.8vw, 32px);">
           <img src="w2d/assets/hera.png" alt="" class="h-[1.2em] w-auto brightness-0 invert">
-          ご予約・テイクアウトはこちら
+          <span class="relative inline-block isolate">
+            ご予約・テイクアウトはこちら
+            <svg class="absolute -bottom-2 left-0 w-full h-3 text-kokoya-amber/60 z-[-1]" viewBox="0 0 300 20" preserveAspectRatio="none">
+              <path d="M5,15 C50,10 150,10 295,15 C150,18 50,18 5,15" fill="currentColor" />
+            </svg>
+          </span>
         </h2>
         <p class="text-zinc-400 text-sm mb-8 max-w-[600px] mx-auto">ご予約はお電話または各店舗詳細ページの予約フォームからどうぞ。テイクアウトも受け付けております。</p>
         <div class="flex flex-col sm:flex-row items-center justify-center gap-4">

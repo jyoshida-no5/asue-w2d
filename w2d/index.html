@@ -107,8 +107,18 @@
 
 <body class="bg-white text-kk-black">
 
-  <!-- ========== HEADER ========== -->
-  <header class="fixed top-0 left-0 right-0 h-14 lg:h-16 bg-white z-50 shadow-sm border-b-2 border-black">
+  <!-- ========== HEADER & ANNOUNCEMENT ========== -->
+  <div class="fixed top-0 left-0 right-0 z-50">
+    <!-- Announcement Bar -->
+    <div class="bg-zinc-100 border-b border-zinc-200 py-2 px-4 text-center">
+      <p class="text-[10px] sm:text-xs text-zinc-600 font-bold leading-tight">
+        ゴールデンウィーク期間中は営業時間が変わっております。ご注意ください
+        <a href="#" class="inline-block ml-1 text-kk-amber border-b border-kk-amber/30 hover:border-kk-amber transition-all">くわしくはこちら</a>
+      </p>
+    </div>
+
+    <!-- Header 本体 -->
+    <header class="h-14 lg:h-16 bg-white shadow-sm border-b-2 border-black">
 
     <div class="h-full max-w-7xl mx-auto px-4 flex items-center justify-between">
 
@@ -149,6 +159,7 @@
       </div>
     </div>
   </header>
+</div>
 
   <!-- ========== SP ドロワーメニュー ========== -->
   <div id="drawer" class="fixed inset-0 z-[60] hidden">
@@ -199,7 +210,7 @@
   </div>
 
   <!-- ========== MAIN CONTENT ========== -->
-  <main class="pt-14 lg:pt-16 pb-[60px] md:pb-0">
+  <main class="pt-[92px] lg:pt-[100px] pb-[60px] md:pb-0">
 
     <!-- ========== HERO ========== -->
     <section class="relative w-full">
@@ -244,7 +255,12 @@
       <div class="text-center pt-14 pb-10 px-4">
         <h2 class="flex items-center justify-center gap-3 font-serif font-bold text-kk-black" style="font-size: clamp(20px, 2.8vw, 30px);">
           <img src="assets/hera.png" alt="" class="h-[1.2em] w-auto">
-          限定メニュー・トピックス
+          <span class="relative inline-block isolate">
+            限定メニュー・トピックス
+            <svg class="absolute -bottom-2 left-0 w-full h-3 text-kk-amber/40 z-[-1]" viewBox="0 0 300 20" preserveAspectRatio="none">
+              <path d="M5,15 C50,10 150,10 295,15 C150,18 50,18 5,15" fill="currentColor" />
+            </svg>
+          </span>
         </h2>
       </div>
 
@@ -303,7 +319,12 @@
           <h2 class="flex items-center justify-center gap-3 font-serif font-bold text-kk-black"
               style="font-size: clamp(20px, 2.8vw, 30px);">
             <img src="assets/hera.png" alt="" class="h-[1.2em] w-auto">
-            人気のメニュー
+            <span class="relative inline-block isolate">
+              人気のメニュー
+              <svg class="absolute -bottom-2 left-0 w-full h-3 text-kk-amber/40 z-[-1]" viewBox="0 0 300 20" preserveAspectRatio="none">
+                <path d="M5,15 C50,10 150,10 295,15 C150,18 50,18 5,15" fill="currentColor" />
+              </svg>
+            </span>
           </h2>
         </div>
 
@@ -375,7 +396,12 @@
         <h2 class="flex items-center justify-center gap-3 font-serif font-bold text-kk-black mb-4"
             style="font-size: clamp(20px, 2.8vw, 30px);">
           <img src="assets/hera.png" alt="" class="h-[1.2em] w-auto">
-          お近くの店舗を探す
+          <span class="relative inline-block isolate">
+            お近くの店舗を探す
+            <svg class="absolute -bottom-2 left-0 w-full h-3 text-kk-amber/40 z-[-1]" viewBox="0 0 300 20" preserveAspectRatio="none">
+              <path d="M5,15 C50,10 150,10 295,15 C150,18 50,18 5,15" fill="currentColor" />
+            </svg>
+          </span>
         </h2>
         <p class="text-kk-sub text-sm mb-9 leading-relaxed">現在地またはエリアから、ここやねんの店舗を素早く検索</p>
 
@@ -413,7 +439,12 @@
       <div class="relative max-w-5xl mx-auto text-center">
         <h2 class="flex items-center justify-center gap-3 font-serif font-bold text-kk-black mb-4" style="font-size: clamp(20px, 2.8vw, 30px);">
           <img src="assets/hera.png" alt="" class="h-[1.2em] w-auto">
-          公式Instagram
+          <span class="relative inline-block isolate">
+            公式Instagram
+            <svg class="absolute -bottom-2 left-0 w-full h-3 text-kk-amber/40 z-[-1]" viewBox="0 0 300 20" preserveAspectRatio="none">
+              <path d="M5,15 C50,10 150,10 295,15 C150,18 50,18 5,15" fill="currentColor" />
+            </svg>
+          </span>
         </h2>
         <p class="text-kk-sub text-sm mb-9 leading-relaxed">最新情報や美味しく食べるコツをお届けします！</p>
 
@@ -461,7 +492,12 @@
           <h2 class="flex items-center justify-center gap-3 font-serif font-bold text-white mb-4"
               style="font-size: clamp(20px, 2.8vw, 30px);">
             <img src="assets/hera.png" alt="" class="h-[1.2em] w-auto brightness-0 invert">
-            ここやねんの6つのこだわり
+            <span class="relative inline-block isolate">
+              ここやねんの6つのこだわり
+              <svg class="absolute -bottom-2 left-0 w-full h-3 text-kk-amber/60 z-[-1]" viewBox="0 0 300 20" preserveAspectRatio="none">
+                <path d="M5,15 C50,10 150,10 295,15 C150,18 50,18 5,15" fill="currentColor" />
+              </svg>
+            </span>
           </h2>
           <p class="text-zinc-400 text-sm max-w-sm mx-auto leading-relaxed">素材から焼き方まで、妥協なき品質へのこだわり</p>
         </div>
@@ -577,7 +613,12 @@
             <h2 class="flex items-center gap-3 font-serif font-bold text-kk-black"
                 style="font-size: clamp(18px, 2.5vw, 26px);">
               <img src="assets/hera.png" alt="" class="h-[1.2em] w-auto">
-              お知らせ
+              <span class="relative inline-block isolate">
+                お知らせ
+                <svg class="absolute -bottom-1.5 left-0 w-full h-3 text-kk-amber/40 z-[-1]" viewBox="0 0 300 20" preserveAspectRatio="none">
+                  <path d="M5,15 C50,10 150,10 295,15 C150,18 50,18 5,15" fill="currentColor" />
+                </svg>
+              </span>
             </h2>
           </div>
           <a href="#" class="hidden sm:flex items-center gap-1 text-sm text-kk-brown font-bold hover:underline underline-offset-2">
